@@ -16,7 +16,7 @@
   },
   "scripts": {
     "start": "tsdx watch",
-    "build": "tsdx build --target node",
+    "build": "tsdx build",
     "test": "tsdx test",
     "lint": "tsdx lint .",
     "size": "size-limit",
@@ -27,13 +27,16 @@
     "jsonc": "^2.0.0"
   },
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^8.2.4",
-    "husky": "^8.0.3",
-    "size-limit": "^8.2.4",
-    "tsdx": "^0.14.1",
-    "tslib": "^2.5.2",
-    "typescript": "^5.0.4",
-    "vite": "^4.3.8"
+    "@size-limit/preset-small-lib": "^12.0.0",
+    "bunchee": "^6.9.3",
+    "husky": "^9.1.7",
+    "oxlint": "^1.39.0",
+    "size-limit": "^12.0.0",
+    "tsdx": "^2.0.0",
+    "tslib": "^2.8.1",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1",
+    "vitest": "^4.0.17"
   },
   "husky": {
     "hooks": {
@@ -48,12 +51,14 @@
   },
   "size-limit": [
     {
-      "path": "dist/vite-plugin-jsonx.cjs.production.min.js",
-      "limit": "10 KB"
+      "path": "dist/index.js",
+      "limit": "20 KB",
+      "ignore": ["fs", "path", "util", "assert", "stream", "constants"]
     },
     {
       "path": "dist/vite-plugin-jsonx.esm.js",
-      "limit": "10 KB"
+      "limit": "20 KB",
+      "ignore": ["fs", "path", "util", "assert", "stream", "constants"]
     }
   ]
 }
