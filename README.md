@@ -1,5 +1,11 @@
 # vite-plugin-jsonx
 
+[![CI](https://github.com/gokhantaskan/vite-plugin-jsonx/actions/workflows/main.yml/badge.svg)](https://github.com/gokhantaskan/vite-plugin-jsonx/actions/workflows/main.yml)
+[![codecov](https://codecov.io/gh/gokhantaskan/vite-plugin-jsonx/graph/badge.svg)](https://codecov.io/gh/gokhantaskan/vite-plugin-jsonx)
+[![npm version](https://img.shields.io/npm/v/vite-plugin-jsonx.svg)](https://www.npmjs.com/package/vite-plugin-jsonx)
+[![npm downloads](https://img.shields.io/npm/dm/vite-plugin-jsonx.svg)](https://www.npmjs.com/package/vite-plugin-jsonx)
+[![license](https://img.shields.io/npm/l/vite-plugin-jsonx.svg)](https://github.com/gokhantaskan/vite-plugin-jsonx/blob/main/LICENSE)
+
 This is a Vite plugin that enables you to import JSONC and JSON5 files as modules in your Vite project.
 
 ## Features

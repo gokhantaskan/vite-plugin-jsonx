@@ -1,9 +1,9 @@
 declare module "*.jsonc" {
-  const value: any;
+  const value: Record<string, unknown>;
   export default value;
 }
 
 declare module "*.json5" {
-  const value: any;
+  const value: Record<string, unknown>;
   export default value;
 }

@@ -1,9 +1,9 @@
-import fs from "fs";
+import fs from "fs/promises";
 import { jsonc } from "jsonc";
 import json5 from "json5";
-import { Plugin } from "vite";
+import type { Plugin } from "vite";
 
-interface PluginOptions {
+export interface PluginOptions {
   json5ParserOptions?: Parameters<typeof json5.parse>[1];
   jsoncParserOptions?: Parameters<typeof jsonc.safe.parse>[1];
 }
@@ -11,45 +11,46 @@ interface PluginOptions {
 /**
  * Vite plugin for importing JSONC and JSON5 files as JSON.
  *
- * @param {object} options.json5ParserOptions - More details: https://github.com/json5/json5#json5parse
- * @param {object} options.jsoncParserOptions - More details: https://onury.io/jsonc//api#jsonc.safe.parse
+ * @param options.json5ParserOptions - JSON5 parser options. See: https://github.com/json5/json5#json5parse
+ * @param options.jsoncParserOptions - JSONC parser options. See: https://onury.io/jsonc/api#jsonc.safe.parse
  */
-export const jsonX = ({
-  json5ParserOptions,
-  jsoncParserOptions,
-}: PluginOptions = {}): Plugin => {
+export function jsonX(options: PluginOptions = {}): Plugin {
+  const { json5ParserOptions, jsoncParserOptions } = options;
+
   return {
-    name: "vite-plugin-jsonx", // name of the plugin
+    name: "vite-plugin-jsonx",
 
-    resolveId(id: string) {
+    resolveId(id) {
       if (id.endsWith(".json5") || id.endsWith(".jsonc")) {
-        return id; // this signals that we want to resolve this module ourselves in `load()`
+        return id;
       }
-
-      return null; // otherwise let other plugins handle it
+      return null;
     },
 
-    async load(id: string) {
+    async load(id) {
+      if (!id.endsWith(".json5") && !id.endsWith(".jsonc")) {
+        return null;
+      }
+
       try {
+        const content = await fs.readFile(id, "utf-8");
+
         if (id.endsWith(".json5")) {
-          const content = fs.readFileSync(id, "utf-8");
           const data = json5.parse(content, json5ParserOptions);
           return `export default ${JSON.stringify(data)};`;
         }
 
         if (id.endsWith(".jsonc")) {
-          const content = fs.readFileSync(id, "utf-8");
           const [err, data] = jsonc.safe.parse(content, jsoncParserOptions);
-          if (err) throw new Error(err.message);
+          if (err) throw err;
           return `export default ${JSON.stringify(data)};`;
         }
       } catch (error) {
-        throw new Error(
-          `Error while parsing ${id}:: ${(error as any).message}`
-        );
+        const message = error instanceof Error ? error.message : String(error);
+        throw new Error(`Failed to parse ${id}: ${message}`);
       }
 
-      return null; // other ids should be handled as usually
+      return null;
     },
   };
-};
+}
