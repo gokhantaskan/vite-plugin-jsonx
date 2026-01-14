@@ -3,8 +3,9 @@ import { jsonX } from "../src/index";
 import path from "path";
 import fs from "fs/promises";
 import os from "os";
+import { fileURLToPath } from "url";
 
-const examplesDir = path.resolve(__dirname, "../examples");
+const examplesDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../examples");
 
 describe("jsonX plugin", () => {
   const plugin = jsonX();
