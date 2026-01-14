@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2026-01-14
+
+### Added
+
+- Modernized codebase with async I/O for improved performance
+- Comprehensive test coverage
+- Enhanced CI/CD pipeline
+
+### Changed
+
+- Updated esbuild to latest version
+
 ## [1.1.3] - 2026-01-14
 
 ### Changed
@@ -46,3 +58,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Support for JSON5 (.json5) files
 - Support for JSONC (.jsonc) files
 - Vite plugin for importing extended JSON formats
+
