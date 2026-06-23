@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-jsonx",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "author": "Gokhan Taskan",
   "license": "MIT",
   "type": "module",
@@ -45,14 +45,14 @@
   "devDependencies": {
     "@size-limit/preset-small-lib": "^12.0.0",
     "@types/node": "^20.19.29",
-    "@vitest/coverage-v8": "^4.0.17",
+    "@vitest/coverage-v8": "^4.1.0",
     "esbuild": "^0.27.2",
     "husky": "^9.1.7",
     "oxlint": "^1.39.0",
     "size-limit": "^12.0.0",
     "typescript": "^5.9.3",
-    "vite": "^7.3.1",
-    "vitest": "^4.0.17"
+    "vite": "^7.3.2",
+    "vitest": "^4.1.0"
   },
   "husky": {
     "hooks": {
